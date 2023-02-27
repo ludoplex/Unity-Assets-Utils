@@ -11,8 +11,13 @@ for file in os.listdir(currentPath):
 
     with open(os.path.join(currentPath, file), 'rb') as in_file:
         secondPass = False
+        l = len(in_file.read())
+        in_file.seek(0)
 
-        for i in range(1024):
+        if l > 42069:
+            l = 42069
+
+        for i in range(l):
             in_file.seek(i)
             byte = in_file.read(7)
 
