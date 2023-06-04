@@ -42,6 +42,12 @@ A series of Python scripts that make modding and mining Unity assets easier~
   2. Enter the path to the folder containing all the assets
   3. Enter a **filter**
 
+## FillAlpha
+- Remove the Alpha channel of all image files in a folder
+- **How to Use**
+  1. `>python FillAlpha.py`
+  2. Enter the path to the folder containing all the assets
+
 # Notice
 - I'm not responsible for whatever happens to your files.
 - Read what each script does carefully.
