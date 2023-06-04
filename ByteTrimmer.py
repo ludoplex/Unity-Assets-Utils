@@ -1,41 +1,32 @@
-import sys
 import os
 
-delete = True if len(sys.argv) < 2 else sys.argv[1]
+currentPath = str(input('Path to Assets: '))
 
-currentPath = os.path.dirname(os.path.abspath(__file__))
-
-for file in os.listdir(currentPath):
-    if '.py' in file or not os.path.isfile(os.path.join(currentPath, file)):
+for FILE in os.listdir(currentPath):
+    if '.py' in FILE or not os.path.isfile(os.path.join(currentPath, FILE)):
         continue
 
-    with open(os.path.join(currentPath, file), 'rb') as in_file:
+    with open(os.path.join(currentPath, FILE), 'rb+') as BYTES:
         secondPass = False
-        l = len(in_file.read())
-        in_file.seek(0)
 
-        if l > 42069:
-            l = 42069
+        DATA = BYTES.read()
+
+        l = len(DATA) if len(DATA) < 42069 else 42069
+        pos = 0
 
         for i in range(l):
-            in_file.seek(i)
-            byte = in_file.read(7)
+            BYTES.seek(i)
+            byte = BYTES.read(7)
 
             if byte == b'UnityFS':
                 if not secondPass:
-                    pos = in_file.tell() - 7
+                    pos = BYTES.tell() - 7
                     secondPass = True
                 else:
-                    pos = in_file.tell() - 7
+                    pos = BYTES.tell() - 7
                     break
 
-        output = os.path.join(currentPath, file) + '_edited'
-
-        with open(output, 'wb+') as out_file:
-            in_file.seek(0)
-            out_file.write(in_file.read()[pos:])
-        out_file.close()
-        
-    in_file.close()
-    if delete:
-        os.remove(file)
+        if not pos == 0:
+            BYTES.seek(0)
+            BYTES.write(DATA[pos:])
+            BYTES.truncate()
