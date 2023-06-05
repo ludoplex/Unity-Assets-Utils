@@ -1,5 +1,5 @@
 # Unity-Assets-Utils
-A series of Python scripts that make modding and mining Unity assets easier~
+A series of Python scripts that makes mining and modding Unity assets easier~
 
 ## ByteTrimmer
 - Remove the leading bytes of all files in a folder, so that `AssetStudio` can read them.
@@ -43,10 +43,10 @@ A series of Python scripts that make modding and mining Unity assets easier~
   3. Enter a **filter**
 
 ## FillAlpha
-- Remove the Alpha channel of all image files in a folder
+- Remove the Alpha channel of a single image, or all image files in a folder
 - **How to Use**
   1. `>python FillAlpha.py`
-  2. Enter the path to the folder containing all the assets
+  2. Enter the path to an image or the folder containing all the images
 
 # Notice
 - I'm not responsible for whatever happens to your files.
