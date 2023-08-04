@@ -11,7 +11,7 @@ for FILE in os.listdir(currentPath):
 
         DATA = BYTES.read()
 
-        l = len(DATA) if len(DATA) < 42069 else 42069
+        l = min(len(DATA), 42069)
         pos = 0
 
         for i in range(l):
@@ -19,14 +19,13 @@ for FILE in os.listdir(currentPath):
             byte = BYTES.read(7)
 
             if byte == b'UnityFS':
+                pos = BYTES.tell() - 7
                 if not secondPass:
-                    pos = BYTES.tell() - 7
                     secondPass = True
                 else:
-                    pos = BYTES.tell() - 7
                     break
 
-        if not pos == 0:
+        if pos != 0:
             BYTES.seek(0)
             BYTES.write(DATA[pos:])
             BYTES.truncate()

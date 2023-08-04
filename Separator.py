@@ -14,7 +14,7 @@ for FILE in os.listdir(currentPath):
     with open(os.path.join(currentPath, FILE), 'rb') as in_file:
         asset = in_file.read()
 
-    if not asset[0:7] == b'UnityFS':
+    if asset[:7] != b'UnityFS':
         continue
 
     if b'AudioClip' in asset:
